@@ -26,7 +26,7 @@ PRODUCT_PACKAGES += \
 
 # Alert slider
 PRODUCT_PACKAGES += \
-    KeyHandler \
+    OPlusExtras \
     tri-state-key-calibrate
 
 # Audio
