@@ -415,3 +415,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/oneplus/sm8250-common/sm8250-common-vendor.mk)
+
+# Camera Shim
+PRODUCT_PACKAGES += libcsextimpl_shim

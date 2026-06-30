@@ -131,8 +131,11 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so': blob_fixup()
         .call(blob_fixup_nop_call, 'bl', '__cfi_check', '_ZN7android8hardware22configureRpcThreadpoolEmb@plt'),
     'system_ext/lib64/libcsextimpl.so': blob_fixup()
+        .add_needed('libcsextimpl_shim.so')
         .binary_regex_replace(b'_ZN7android17CameraThreadState13getCallingPidEv', b'getpid' + b'\x00' * 41)
         .binary_regex_replace(b'_ZN7android17CameraThreadState13getCallingUidEv', b'getuid' + b'\x00' * 41),
+    'vendor/lib64/libaps_frame_registration.so': blob_fixup()
+        .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

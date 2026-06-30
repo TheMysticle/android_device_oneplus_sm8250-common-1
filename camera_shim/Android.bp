@@ -1,0 +1,6 @@
+cc_library_shared {
+    name: "libcsextimpl_shim",
+    srcs: ["libcsextimpl_shim.cpp"],
+    shared_libs: ["libcamera_client"],
+    system_ext_specific: true,
+}
