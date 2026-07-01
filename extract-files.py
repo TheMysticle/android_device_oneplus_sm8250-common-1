@@ -117,10 +117,14 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/hw/com.qti.chi.override.so': blob_fixup()
         .add_needed('libcamera_metadata_shim.so')
         .binary_regex_replace(b'com.oem.autotest', b'\x00om.oem.autotest'),
-    ('vendor/lib64/libarcsoft_hta.so', 'vendor/lib64/libarcsoft_superportrait.so', 'vendor/lib64/libarcsoft_hdrplus_hvx_stub.so', 'vendor/lib64/libarcsoft_high_dynamic_range_v4.so', 'vendor/lib64/libarcsoft_mfsr_frt.so', 'vendor/lib64/libarcsoft_super_night_raw.so', 'vendor/lib64/libarcsoft_dualcam_refocus_preview.so'): blob_fixup()
+    ('vendor/lib64/libarcsoft_hta.so', 'vendor/lib64/libarcsoft_superportrait.so', 'vendor/lib64/libsnpe_dsp_domains_v2.so', 'vendor/lib64/libsnpe_adsp.so', 'vendor/lib64/libsnpe_dsp_domains.so', 'vendor/lib64/libVDFusionBlurlessAPI_v2.so', 'odm/lib64/libaiboost_hexagon.so', 'vendor/lib64/libarcsoft_hdrplus_hvx_stub.so', 'vendor/lib64/libarcsoft_high_dynamic_range_v4.so', 'vendor/lib64/libarcsoft_mfsr_frt.so', 'vendor/lib64/libarcsoft_super_night_raw.so', 'vendor/lib64/libarcsoft_dualcam_refocus_preview.so'): blob_fixup()
         .clear_symbol_version('remote_handle_close')
         .clear_symbol_version('remote_handle_invoke')
         .clear_symbol_version('remote_handle_open')
+        .clear_symbol_version('remote_handle64_close')
+        .clear_symbol_version('remote_handle64_invoke')
+        .clear_symbol_version('remote_handle64_open')
+        .clear_symbol_version('remote_register_dma_handle')
         .clear_symbol_version('remote_register_buf_attr')
         .clear_symbol_version('remote_register_buf'),
     'vendor/lib64/libdpps.so': blob_fixup()
@@ -132,9 +136,13 @@ blob_fixups: blob_fixups_user_type = {
         .call(blob_fixup_nop_call, 'bl', '__cfi_check', '_ZN7android8hardware22configureRpcThreadpoolEmb@plt'),
     'system_ext/lib64/libcsextimpl.so': blob_fixup()
         .add_needed('libcsextimpl_shim.so')
+        .replace_needed('android.hardware.camera.device-V1-ndk', 'android.hardware.camera.device-V3-ndk')
+        .replace_needed('android.hardware.camera.provider-V1-ndk', 'android.hardware.camera.provider-V3-ndk')
         .binary_regex_replace(b'_ZN7android17CameraThreadState13getCallingPidEv', b'getpid' + b'\x00' * 41)
         .binary_regex_replace(b'_ZN7android17CameraThreadState13getCallingUidEv', b'getuid' + b'\x00' * 41),
     'vendor/lib64/libaps_frame_registration.so': blob_fixup()
+        .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
+    'vendor/lib64/libyuv2.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
 }  # fmt: skip
 
