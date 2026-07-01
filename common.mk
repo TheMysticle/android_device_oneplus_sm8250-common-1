@@ -6,7 +6,8 @@
 
 # Camera
 $(call inherit-product-if-exists, vendor/oneplus/camera/camera-vendor.mk)
-$(call soong_config_set_bool,camera,override_format_from_reserved,$(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED))
+$(call soong_config_set_bool,camera,override_format_from_reserved,true)
+$(call soong_config_set,camera,package_name,com.oplus.packageName)
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)

@@ -122,7 +122,6 @@ vendor/lib64/libVDSuperPhotoAPI.so;FIX_SONAME
 vendor/lib64/libOPPO_Front_SCPortrait.so;FIX_SONAME
 vendor/lib64/libOPPO_SCPortrait.so;FIX_SONAME
 vendor/lib64/libSNPE.so
-vendor/lib64/libstdc++.so:vendor/lib64/libstdc++_vendor.so;FIX_SONAME
 vendor/lib64/libsymphony-cpu.so
 vendor/lib64/libaps_frame_registration.so
 odm/lib64/hta_lib/libhta_hexagon_runtime.so;MODULE_SUFFIX=_odm
